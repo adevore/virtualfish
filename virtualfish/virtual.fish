@@ -136,11 +136,13 @@ function __vf_rm --description "Delete a virtualenv"
 end
 
 function __vf_ls --description "List all of the available virtualenvs"
-	pushd $VIRTUALFISH_HOME
-	for i in */bin/python
-		echo $i
-	end | sed "s|/bin/python||"
-	popd
+	if test -d $VIRTUALFISH_HOME
+		pushd $VIRTUALFISH_HOME
+		for i in */bin/python
+			echo $i
+		end | sed "s|/bin/python||"
+		popd
+	end
 end
 
 function __vf_cd --description "Change directory to this virtualenv"
